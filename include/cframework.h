@@ -3,9 +3,9 @@
 
 #include "routes.h"
 int start_server(int port);
-int set_routes(route_handler* routes);
+int set_routes(struct route* _routes);
 
-static route_handler *route_handlers;
+static struct route *routes;
 
 
 

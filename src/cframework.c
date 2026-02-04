@@ -27,8 +27,8 @@ int start_server(int port) {
 }
 
 // returns 0 on error, else returns 1 on success
-int set_routes(route_handler *_route_handelers) {
+int set_routes(struct route* _routes) {
 
-  route_handlers = _route_handelers;
+  routes = _routes;
   return 1;
 }

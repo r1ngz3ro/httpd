@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 // starts the server, 0 on error and 1 on success
-int start_server(int port) {
+int start_server(int port, struct route routes[], int n) {
 
   clog_set_level(CLOG_WARN);
 
@@ -18,7 +18,7 @@ int start_server(int port) {
     int c = server_accept(s);
     if (!fork()) {
       // close(s);
-      handle_client(s, c);
+      handle_client(s, c, routes, n);
       close(c);
       exit(0);
     }

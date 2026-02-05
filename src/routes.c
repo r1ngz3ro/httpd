@@ -44,8 +44,6 @@ static void static_handler(int c, const char *url) {
 
 // ------------------ Route Matching ------------------
 
-
-
 static int match_route(const char *pattern, const char *path, route_params *out) {
     char pcopy[256], ucopy[256];
     char *ptok, *utok;
@@ -83,17 +81,17 @@ static int match_route(const char *pattern, const char *path, route_params *out)
 
 // ------------------ Route Table ------------------
 
-static struct route routes[] = {
-    {"GET", "/users/:id", user_handler},
-    {"GET", "/posts/:postId/comments/:commentId", post_comment_handler},
-};
+// static struct route routes[] = {
+//     {"GET", "/users/:id", user_handler},
+//     {"GET", "/posts/:postId/comments/:commentId", post_comment_handler},
+// };
 
 
-#define ROUTE_COUNT (sizeof(routes) / sizeof(routes[0]))
+// #define ROUTE_COUNT (sizeof(routes) / sizeof(routes[0]))
 
 // ------------------ Dispatcher ------------------
 
-void dispatch_route(int c, http_request *req) {
+void dispatch_route(int c, http_request *req, struct route routes[], int n) {
   route_params params;
 
   // Remove trailing slash if present
@@ -110,7 +108,7 @@ void dispatch_route(int c, http_request *req) {
   }
 
   // Parameterized routes
-  for (int i = 0; i < ROUTE_COUNT; i++) {
+  for (int i = 0; i < n; i++) {
     if (strcmp(req->method, routes[i].method) != 0)
       continue;
 

@@ -31,16 +31,10 @@ int server_accept(int s) {
   return accept(s, (struct sockaddr *)&cli, &len);
 }
 
-void handle_client(int s, int c) {
-  //   char *raw = cli_read(c);
-  //   if (!raw)
-  //     return;
+void handle_client(int s, int c, struct route routes[], int n) {
+  
   http_request req;
   http_read_request(c, &req);
-  //   if (!req)
-  //     return;
+  dispatch_route(c, &req, routes, n);
 
-  dispatch_route(c, &req);
-  // free(raw);
-  //   free(req);
 }

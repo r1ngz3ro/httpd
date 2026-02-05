@@ -8,6 +8,8 @@ httpd
 *.obj
 *.elf
 
+# static dir content
+www/
 # Linker output
 *.ilk
 *.map

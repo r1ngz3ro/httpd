@@ -23,6 +23,6 @@ struct route {
   route_handler handler;
 };
 
-void dispatch_route(int client_fd, http_request *req);
+void dispatch_route(int client_fd, http_request *req, struct route routes[], int n);
 
 #endif
